@@ -4,10 +4,10 @@
 
 - windows
 
-- > go build main.go -o cheatsheet.exe
+- > go build -o cheatsheet.exe main.go 
 - > ./cheatsheet.exe field subfield
 
 - linux
 
-- > go build main.go -o cheatsheet
+- > go build  -o cheatsheet main.go
 - > ./cheatsheet field subfield
