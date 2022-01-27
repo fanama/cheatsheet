@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 
 	"jaytaylor.com/html2text"
 )
@@ -21,7 +22,7 @@ func main() {
 	topic := ""
 
 	if len(os.Args) > 2 {
-		topic = os.Args[2]
+		topic = strings.Join(os.Args[2:], "+")
 	}
 
 	fmt.Println("===========================================================")

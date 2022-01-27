@@ -5,9 +5,9 @@
 - windows
 
 - > go build -o cheatsheet.exe main.go 
-- > ./cheatsheet.exe field subfield
+- > ./cheatsheet.exe techno field1 field2 field3
 
 - linux
 
 - > go build  -o cheatsheet main.go
-- > ./cheatsheet field subfield
+- > ./cheatsheet techno field1 field2 field3
