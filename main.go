@@ -2,18 +2,16 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"net/http"
 	"os"
 	"strings"
 
-	"jaytaylor.com/html2text"
+	"github.com/fanama/cheatsheet/infra/services/requester"
 )
 
 func main() {
 
-	fmt.Println("===========================================================")
 	if len(os.Args) < 2 {
+		fmt.Println("===========================================================")
 		fmt.Println("not enough argument")
 		os.Exit(1)
 	}
@@ -25,30 +23,15 @@ func main() {
 		topic = strings.Join(os.Args[2:], "+")
 	}
 
-	fmt.Println("===========================================================")
-	fmt.Println("Getting ", field, "/", topic+"...")
+	cheatController := requester.BuildCheat()
 
-	resp, err := http.Get("http://cheat.sh/" + field + "/" + topic)
-
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	body, err := ioutil.ReadAll(resp.Body)
+	text, err := cheatController.Ask(field, topic)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	text, err := html2text.FromString(string(body), html2text.Options{PrettyTables: true})
-
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	fmt.Println(text)
+	fmt.Println("\n \n", text)
 
 }
